@@ -1,6 +1,6 @@
-# myapp
+# Flutterチュートリアル
 
-A new Flutter project.
+Flutterのチュートリアルとりあえずやってみよう、触ってみよう〜
 
 ## Getting Started
 
