@@ -75,23 +75,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List items = [];
 
-  Future<void> getData() async {
-    var response = await http.get(Uri.https(
-        'www.googleapis.com',
-        '/books/v1/volumes',
-        {'q': '{Bleach}', 'maxResults': '40', 'langRestrict': 'ja'}));
+  // Future<void> getData() async {
+  //   var response = await http.get(Uri.https(
+  //       'www.googleapis.com',
+  //       '/books/v1/volumes',
+  //       {'q': '{Bleach}', 'maxResults': '40', 'langRestrict': 'ja'}));
 
-    var jsonResponse = jsonDecode(response.body);
+  //   var jsonResponse = jsonDecode(response.body);
 
-    setState(() {
-      items = jsonResponse['items'];
-    });
-  }
+  //   setState(() {
+  //     items = jsonResponse['items'];
+  //   });
+  // }
 
-  void initState() {
-    super.initState();
-    getData();
-  }
+  // void initState() {
+  //   super.initState();
+  //   getData();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -108,25 +108,8 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         backgroundColor: Color.fromARGB(255, 43, 43, 43),
       ),
-      body: ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Card(
-            child: Column(
-              children: <Widget>[
-                ListTile(
-                  leading: Image.network(
-                    items[index]['volumeInfo']['imageLinks']['thumbnail'],
-                  ),
-                  title: Text(items[index]['volumeInfo']['title'] ?? ''),
-                  subtitle:
-                      Text(items[index]['volumeInfo']['publishedDate'] ?? ''),
-                ),
-              ],
-            ),
-          );
-        },
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body:
+          Center(), // This trailing comma makes auto-formatting nicer for build methods.
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
