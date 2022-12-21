@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 import 'package:myapp/notifier.dart';
-import 'package:myapp/pages/counter_page.dart';
+import 'package:myapp/pages/count_page.dart';
 import 'package:myapp/pages/page_todo_add.dart';
 
 void main() {
@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final PageController _pageController = PageController(initialPage: 0);
 
   final List<Widget> _currentScreens = [
-    CounterPage(),
+    CountPage(),
     Center(child: Text('Hello business')),
     Center(child: Text('Hello school')),
     Center(child: Text('Hello settings')),

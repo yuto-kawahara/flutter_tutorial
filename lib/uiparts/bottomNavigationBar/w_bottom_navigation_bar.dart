@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:myapp/pages/counter_page.dart';
+import 'package:myapp/pages/count_page.dart';
 
 // class WBottomNavigationBar extends StatefulWidget {
 //   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class WBottomNavigationBar extends ConsumerWidget {
   final PageController _pageController = PageController(initialPage: 0);
 
   List<Widget> _currentScreens = [
-    CounterPage(),
+    CountPage(),
     Center(child: Text('Hello business')),
     Center(child: Text('Hello school')),
     Center(child: Text('Hello settings')),
