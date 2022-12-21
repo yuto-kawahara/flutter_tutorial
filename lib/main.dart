@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
+import 'package:myapp/pages/counter_page.dart';
 import 'package:myapp/pages/page_todo_add.dart';
 
 void main() {
@@ -56,6 +57,15 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int _selectedIndex = 0;
 
+  final PageController _pageController = PageController(initialPage: 0);
+
+  final List<Widget> _currentScreens = [
+    CounterPage(),
+    Center(child: Text('Hello business')),
+    Center(child: Text('Hello school')),
+    Center(child: Text('Hello settings')),
+  ];
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -95,6 +105,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    if (_pageController.hasClients) {
+      _pageController.animateToPage(_selectedIndex,
+          duration: const Duration(milliseconds: 250), curve: Curves.easeInOut);
+    }
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -108,8 +122,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         backgroundColor: Color.fromARGB(255, 43, 43, 43),
       ),
-      body:
-          Center(), // This trailing comma makes auto-formatting nicer for build methods.
+      body: PageView(
+        controller: _pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        children: _currentScreens,
+      ), // This trailing comma makes auto-formatting nicer for build methods.
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
