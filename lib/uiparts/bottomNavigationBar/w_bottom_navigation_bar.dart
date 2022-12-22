@@ -1,37 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:myapp/pages/count_page.dart';
-
-// class WBottomNavigationBar extends StatefulWidget {
-//   Widget build(BuildContext context) {
-//     return BottomNavigationBarStatefulWidget();
-//   }
-// }
+import 'package:myapp/notifier.dart';
 
 class WBottomNavigationBar extends ConsumerWidget {
-  // BottomNavigationBarStatefulWidget({Key? key}) : super(key: key);
-
-  int _selectedIndex = 0;
-
-  final PageController _pageController = PageController(initialPage: 0);
-
-  List<Widget> _currentScreens = [
-    CountPage(),
-    Center(child: Text('Hello business')),
-    Center(child: Text('Hello school')),
-    Center(child: Text('Hello settings')),
-  ];
-  void _onItemTapped(int index) {
-    _selectedIndex = index;
-  }
+  WBottomNavigationBar({Key? key}) : super(key: key);
 
   Widget build(BuildContext context, WidgetRef ref) {
-    _pageController.animateToPage(_selectedIndex,
-        duration: const Duration(milliseconds: 150), curve: Curves.easeInOut);
+    final selectedIndex = ref.watch(selectedIndexProvider);
+
+    void _onItemTapped(int index) {
+      ref.read(selectedIndexProvider.notifier).update((state) => state = index);
+    }
 
     return BottomNavigationBar(
-      currentIndex: _selectedIndex,
+      currentIndex: selectedIndex,
       onTap: _onItemTapped,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
